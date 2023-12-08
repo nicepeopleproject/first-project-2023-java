@@ -6,18 +6,13 @@ public class FanTest {
         Fan modelEkonom = new Fan(7, 3, 4); // создание нового экземпляра
 
         Fan modelStandart = new Fan(15, 5, 10);
-//        modelStandart.bladeCount = 15;
-//        modelStandart.maxMode = 5;
-//        modelStandart.potreblenieElektroenergii = 10;
 
-//        printFanInfo(modelStandart);
-//        modelStandart.modeDown();
+        modelEkonom.printFanInfo();
 
-
+        modelEkonom.printBladeCount();
+        modelEkonom.printMode();
+        modelEkonom.printMaxMode();
+        modelEkonom.printPotreblenieElektroenergii();
+        modelEkonom.printOborotovVMinutu();
     }
-
-//    public static void printFanInfo(Fan fan) {
-//        System.out.println("количество оборотов: " + fan.oborotovVMinutu + " : "
-//                + " режим: " + fan.mode);
-//    }
 }
