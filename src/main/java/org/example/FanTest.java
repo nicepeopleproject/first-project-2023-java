@@ -12,12 +12,9 @@ public class FanTest {
 
 //        printFanInfo(modelStandart);
 //        modelStandart.modeDown();
-
+        modelEkonom.info();
 
     }
 
-//    public static void printFanInfo(Fan fan) {
-//        System.out.println("количество оборотов: " + fan.oborotovVMinutu + " : "
-//                + " режим: " + fan.mode);
-//    }
+
 }
