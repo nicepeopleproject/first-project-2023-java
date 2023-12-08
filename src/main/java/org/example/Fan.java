@@ -11,14 +11,32 @@ public class Fan {
     public Fan(int bladeCount, int maxMode, int potreblenieElektroenergii) {
         // & && - и
         // | || - или
-        if  (bladeCount > 0 & bladeCount < 100) {
+        if  (bladeCount > 0 & bladeCount < 100 & maxMode > 0 & potreblenieElektroenergii > 0) {
             this.bladeCount = bladeCount;
+            this.maxMode = maxMode;
+            this.potreblenieElektroenergii = potreblenieElektroenergii;
         } else{
-            throw new RuntimeException("bladeCount should be > 0, current value = " + bladeCount);
+            throw new RuntimeException("peremenie should be > 0, current value = + your dates");
         }
-        this.maxMode = maxMode;
-        this.potreblenieElektroenergii = potreblenieElektroenergii;
+    }
 
+    public void displayfaninfo() {
+        System.out.println("Bladecount: " + bladeCount + " maxMode: " + maxMode + " Potreblenie Energii:" + potreblenieElektroenergii);
+    }
+
+    public void getbladeCount() {
+        System.out.println(bladeCount);
+    }
+    public void getmaxMode() {
+        System.out.println(maxMode);
+    }
+
+    public void getpotreblenieElektroenergii() {
+        System.out.println(potreblenieElektroenergii);
+    }
+
+    public void calculateoborotivminute() {
+        oborotovVMinutu = 1500 + 500 * mode;
     }
 
     public void modeUp() {
