@@ -16,9 +16,20 @@ public class Fan {
         } else{
             throw new RuntimeException("bladeCount should be > 0, current value = " + bladeCount);
         }
-        this.maxMode = maxMode;
-        this.potreblenieElektroenergii = potreblenieElektroenergii;
-
+        if (maxMode > 0 & maxMode < 10)
+        {
+            this.maxMode = maxMode;
+        }
+        else{
+            throw new RuntimeException("maxMode should be > 0, current value = " + maxMode);
+        }
+        if (potreblenieElektroenergii > 0 & potreblenieElektroenergii < 100)
+        {
+            this.potreblenieElektroenergii = potreblenieElektroenergii;
+        }
+        else{
+            throw new RuntimeException("potreblenieElektroenergii should be > 0, current value = " + potreblenieElektroenergii);
+        }
     }
 
     public void modeUp() {
@@ -35,4 +46,39 @@ public class Fan {
         mode = maxMode - (maxMode - 1) * (mode - 1) % maxMode;
         oborotovVMinutu = 1500 + 500 * mode;
     }
+    public void info()
+    {
+        System.out.println("Количесвто лопастей: " + bladeCount + " Количество доступных режимов: " + maxMode + " Потребление электроэнергии: " + potreblenieElektroenergii + " Текущий режим: " + mode + " Оборотов в минуту: " + oborotovVMinutu);
+    }
+
+    public void count(int a)
+    {
+         System.out.println("Оборотов за " + a + " минут = " + a * oborotovVMinutu);
+    }
+
+    public int infoBladeCount()
+    {
+        return bladeCount;
+    }
+
+    public int infoMaxMode()
+    {
+        return maxMode;
+    }
+
+    public int infoPotreblenieElektroenergii()
+    {
+        return potreblenieElektroenergii;
+    }
+
+    public int infoMode()
+    {
+        return mode;
+    }
+
+    public int infoOborotovVMinutu()
+    {
+        return oborotovVMinutu;
+    }
+
 }
