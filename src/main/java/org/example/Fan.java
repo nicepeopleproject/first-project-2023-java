@@ -1,5 +1,5 @@
 package org.example;
-
+/*
 public class Fan {
     private final int bladeCount; // - количество лопастей
     private int mode = 1; // номер режима [1 - maxMode]
@@ -34,5 +34,42 @@ public class Fan {
 //        }
         mode = maxMode - (maxMode - 1) * (mode - 1) % maxMode;
         oborotovVMinutu = 1500 + 500 * mode;
+    }
+}*/
+public class Ventilator {
+    private int minRPM;
+    private int maxRPM;
+    private boolean isOn;
+
+    public Ventilator(int minRPM, int maxRPM) {
+        if (minRPM < 0 || maxRPM <= 0 || maxRPM <= minRPM) {
+            throw new IllegalArgumentException("Invalid RPM values");
+        }
+        this.minRPM = minRPM;
+        this.maxRPM = maxRPM;
+        this.isOn = false;
+    }
+
+    public void displayInfo() {
+        System.out.println("Min RPM: " + minRPM + ", Max RPM: " + maxRPM + ", Is On: " + isOn);
+    }
+
+    public int calculateRotations(int minutes) {
+        if (!isOn) {
+            return 0;
+        }
+        return (maxRPM * minutes);
+    }
+
+    public int getMinRPM() {
+        return minRPM;
+    }
+
+    public int getMaxRPM() {
+        return maxRPM;
+    }
+
+    public boolean isOn() {
+        return isOn;
     }
 }
