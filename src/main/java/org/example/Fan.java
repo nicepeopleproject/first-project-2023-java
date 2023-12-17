@@ -11,14 +11,36 @@ public class Fan {
     public Fan(int bladeCount, int maxMode, int potreblenieElektroenergii) {
         // & && - и
         // | || - или
-        if  (bladeCount > 0 & bladeCount < 100) {
+        if (bladeCount > 0 & bladeCount < 100) {
             this.bladeCount = bladeCount;
-        } else{
+        } else {
             throw new RuntimeException("bladeCount should be > 0, current value = " + bladeCount);
         }
-        this.maxMode = maxMode;
-        this.potreblenieElektroenergii = potreblenieElektroenergii;
+        if (potreblenieElektroenergii > 500 & potreblenieElektroenergii < 10000) {
+            this.potreblenieElektroenergii = potreblenieElektroenergii;
+        } else {
+            throw new RuntimeException("potreblenieElektroenergii should be > 0, current value = " + bladeCount);
+        }
 
+        this.maxMode = maxMode;
+
+
+    }
+
+    public int getmode() {
+        return mode;
+    }
+
+    public int getbladeCount() {
+        return bladeCount;
+    }
+
+    public int getoborotovVMinutu() {
+        return oborotovVMinutu;
+    }
+
+    public int getpotreblenieElektroenergii() {
+        return potreblenieElektroenergii;
     }
 
     public void modeUp() {
@@ -27,12 +49,31 @@ public class Fan {
     }
 
     public void modeDown() {
-//        if (mode == 1) {
-//            mode = maxMode;
-//        }else{
-//            mode--;
-//        }
-        mode = maxMode - (maxMode - 1) * (mode - 1) % maxMode;
+        if (mode == 1) {
+            mode = maxMode;
+        } else {
+            mode--;
+        }
+        //mode = maxMode - (maxMode - 1) * (mode - 1) % maxMode;
         oborotovVMinutu = 1500 + 500 * mode;
     }
+
+
+    public void getinformation() {
+        System.out.println("Потребление элетричества " + getpotreblenieElektroenergii());
+        System.out.println("Количетсво лопастей " + getbladeCount());
+        System.out.println("Режим работы " + getmode());
+    }
+
+    public int countRotMin(int minu) throws Exception {
+        if (minu <= 0) {
+            throw new RuntimeException("Вы вне времени");
+        } else {
+            System.out.println("Обороты за " + minu + " минуты :");
+            return minu * oborotovVMinutu;
+        }
+    }
+
+
 }
+
