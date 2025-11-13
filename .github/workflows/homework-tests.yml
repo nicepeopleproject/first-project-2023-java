@@ -1,0 +1,69 @@
+name: Java Homework Tests
+
+on:
+  push:
+    branches: [ main, master, develop, 'claude/**' ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build with Maven
+      run: mvn clean compile
+
+    - name: Run all tests
+      run: mvn test
+
+    - name: Generate test report
+      if: always()
+      run: mvn surefire-report:report
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: target/surefire-reports/
+
+    - name: Homework 1 - Calculator Tests
+      run: mvn test -Dtest=CalculatorTest
+      continue-on-error: true
+
+    - name: Homework 2 - Array Operations Tests
+      run: mvn test -Dtest=ArrayOperationsTest
+      continue-on-error: true
+
+    - name: Homework 3 - String Manipulation Tests
+      run: mvn test -Dtest=StringManipulatorTest
+      continue-on-error: true
+
+    - name: Homework 4 - Bank Account Tests
+      run: mvn test -Dtest=BankAccountTest
+      continue-on-error: true
+
+    - name: Homework 5 - Student Management Tests
+      run: mvn test -Dtest=StudentManagerTest
+      continue-on-error: true
+
+    - name: Check test success
+      run: |
+        if mvn test; then
+          echo "✅ All tests passed!"
+          exit 0
+        else
+          echo "❌ Some tests failed. Check the output above."
+          exit 1
+        fi
